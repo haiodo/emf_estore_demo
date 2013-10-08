@@ -31,7 +31,8 @@ In sample I've used proxyURI of InternalEObject class to do a object identity.
 # Generated EMF editors.
 I've also make generated EMF editors to work with this model. They are not functional but allow to modify created sample models easy. Editors could be opened on .demomodel files.
 
-
+# Screenshots
+![Demo](/docs/working.png "Working")
 
 
 
