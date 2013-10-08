@@ -17,14 +17,14 @@
          point="org.eclipse.ui.newWizards">
       <category
             id="estore_demo"
-            name="New Demo Model">
+            name="New EStore Demo Model">
       </category>
       <wizard
             category="estore_demo"
             class="com.xored.estore_demo.wizards.NewDemoModelWizard"
             icon="icons/sample.gif"
             id="com.xored.estore_demo.wizards.NewDemoModelWizard"
-            name="New Demo Model">
+            name="New EStore Demo Model">
       </wizard>
    </extension>
    <extension
