@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated demo -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="com.xored.estore_demo.presentation.Estore_demoModelWizardID"
+            name="%_UI_Estore_demoModelWizard_label"
+            class="com.xored.estore_demo.presentation.Estore_demoModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/Estore_demoModelFile.gif">
+         <description>%_UI_Estore_demoModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated demo -->
+      <editor
+            id="com.xored.estore_demo.presentation.Estore_demoEditorID"
+            name="%_UI_Estore_demoEditor_label"
+            icon="icons/full/obj16/Estore_demoModelFile.gif"
+            extensions="demomodel"
+            class="com.xored.estore_demo.presentation.Estore_demoEditor"
+            contributorClass="com.xored.estore_demo.presentation.Estore_demoActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
