@@ -5,8 +5,10 @@ package com.xored.estore_demo.impl;
 import com.xored.estore_demo.Estore_demoPackage;
 import com.xored.estore_demo.Organization;
 import com.xored.estore_demo.Person;
+import com.xored.estore_demo.Task;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.EStoreEObjectImpl;
@@ -22,6 +24,7 @@ import org.eclipse.emf.ecore.impl.EStoreEObjectImpl;
  *   <li>{@link com.xored.estore_demo.impl.PersonImpl#getSecondName <em>Second Name</em>}</li>
  *   <li>{@link com.xored.estore_demo.impl.PersonImpl#getLikedToWork <em>Liked To Work</em>}</li>
  *   <li>{@link com.xored.estore_demo.impl.PersonImpl#getSomeReallyBigData <em>Some Really Big Data</em>}</li>
+ *   <li>{@link com.xored.estore_demo.impl.PersonImpl#getTasks <em>Tasks</em>}</li>
  * </ul>
  * </p>
  *
@@ -119,6 +122,16 @@ public class PersonImpl extends EStoreEObjectImpl implements Person {
 	 */
 	public void setSomeReallyBigData(String newSomeReallyBigData) {
 		eSet(Estore_demoPackage.Literals.PERSON__SOME_REALLY_BIG_DATA, newSomeReallyBigData);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<Task> getTasks() {
+		return (EList<Task>)eGet(Estore_demoPackage.Literals.PERSON__TASKS, true);
 	}
 
 } //PersonImpl

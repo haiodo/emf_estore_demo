@@ -49,6 +49,15 @@ public interface Estore_demoFactory extends EFactory {
 	DemoRoot createDemoRoot();
 
 	/**
+	 * Returns a new object of class '<em>Task</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Task</em>'.
+	 * @generated
+	 */
+	Task createTask();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

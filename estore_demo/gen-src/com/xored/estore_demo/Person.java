@@ -3,6 +3,7 @@
 package com.xored.estore_demo;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -17,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.xored.estore_demo.Person#getSecondName <em>Second Name</em>}</li>
  *   <li>{@link com.xored.estore_demo.Person#getLikedToWork <em>Liked To Work</em>}</li>
  *   <li>{@link com.xored.estore_demo.Person#getSomeReallyBigData <em>Some Really Big Data</em>}</li>
+ *   <li>{@link com.xored.estore_demo.Person#getTasks <em>Tasks</em>}</li>
  * </ul>
  * </p>
  *
@@ -118,5 +120,21 @@ public interface Person extends EObject {
 	 * @generated
 	 */
 	void setSomeReallyBigData(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Tasks</b></em>' containment reference list.
+	 * The list contents are of type {@link com.xored.estore_demo.Task}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Tasks</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Tasks</em>' containment reference list.
+	 * @see com.xored.estore_demo.Estore_demoPackage#getPerson_Tasks()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Task> getTasks();
 
 } // Person

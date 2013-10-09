@@ -7,6 +7,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="likedToWork" upperBound="-1"
         eType="#//Organization"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="someReallyBigData" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tasks" upperBound="-1"
+        eType="#//Task" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Organization">
     <eStructuralFeatures xsi:type="ecore:EReference" name="people" upperBound="-1"
@@ -19,5 +21,13 @@
         eType="#//Organization" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="people" upperBound="-1"
         eType="#//Person" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Task">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="estimation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="complete" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tasks" upperBound="-1"
+        eType="#//Task" containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

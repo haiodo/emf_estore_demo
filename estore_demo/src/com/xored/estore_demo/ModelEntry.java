@@ -1,22 +1,24 @@
 package com.xored.estore_demo;
 
-import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+
+import com.xored.estore_demo.persistence.PersistedObject;
 
 public class ModelEntry {
 
 	private IFile file;
-	private Properties properties = new Properties();
+	private Resource resource = new XMIResourceImpl();
+	private int changes = 0;
 
 	public ModelEntry(IFile indexFile) {
 		this.file = indexFile;
@@ -26,17 +28,23 @@ public class ModelEntry {
 	public void load() {
 		try {
 			if (file.exists()) {
-				properties.load(new BufferedInputStream(file.getContents()));
+				Map<String, Object> options = new HashMap<String, Object>();
+				resource.load(file.getContents(), options);
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	public void save() {
+	public void save(boolean force) {
+		if (changes == 0 && !force) {
+			return;
+		}
+		changes = 0;
 		try {
 			ByteArrayOutputStream bout = new ByteArrayOutputStream();
-			properties.store(bout, "");
+			resource.save(bout, null);
 			ByteArrayInputStream bytes = new ByteArrayInputStream(
 					bout.toByteArray());
 			if (file.exists()) {
@@ -49,75 +57,30 @@ public class ModelEntry {
 		}
 	}
 
-	public int getInt(String key) {
-		return Integer.parseInt(properties.getProperty(key, "0"));
-	}
-
-	public Object getValue(InternalEObject object, EAttribute feature, int index) {
-		String postfix = "";
-		if (index != -1) {
-			postfix = "_" + index;
-		}
-		String value = properties
-				.getProperty(feature.getName() + postfix, null);
-		if (value != null) {
-			return EcoreUtil.createFromString(feature.getEAttributeType(),
-					value);
+	public PersistedObject getObject(String uri) {
+		EList<EObject> contents = resource.getContents();
+		for (EObject eObject : contents) {
+			PersistedObject o = (PersistedObject) eObject;
+			if (o.getId().equals(uri)) {
+				return o;
+			}
 		}
 		return null;
 	}
 
-	public String getProperty(String name, String defaultValue) {
-		return properties.getProperty(name, defaultValue);
+	public void putObject(PersistedObject obj) {
+		this.resource.getContents().add(obj);
 	}
 
-	public void setProperty(String name, String value) {
-		properties.setProperty(name, value);
+	public EList<EObject> getContents() {
+		return resource.getContents();
 	}
 
-	public List<String> getList(String name) {
-		String value = getProperty(name, "");
-		List<String> result = new ArrayList<String>();
-		if (value != null) {
-			String[] values = value.split("\n");
-			for (String val : values) {
-				if( val.trim().length() > 0) {
-					result.add(val);
-				}
-			}
-		}
-		return result;
+	public Resource getResource() {
+		return resource;
 	}
 
-	public void setList(String name, List<String> property) {
-		StringBuilder value = new StringBuilder();
-		int index = 0;
-		for (String val : property) {
-			if (index != 0) {
-				value.append("\n");
-			}
-			value.append(val.trim().replace("\n", "").replace("\r", ""));
-			index++;
-		}
-		properties.setProperty(name, value.toString());
+	public void modified() {
+		changes++;
 	}
-
-	public void setValue(EAttribute feature, Object value, int index) {
-		String strValue = EcoreUtil.convertToString(
-				feature.getEAttributeType(), value);
-		String postfix = "";
-		if (index != -1) {
-			postfix = "_" + index;
-		}
-		properties.setProperty(feature.getName() + postfix, strValue);
-	}
-
-	public boolean containsKey(String name) {
-		return properties.containsKey(name);
-	}
-
-	public void remove(String name) {
-		properties.remove(name);
-	}
-
 }

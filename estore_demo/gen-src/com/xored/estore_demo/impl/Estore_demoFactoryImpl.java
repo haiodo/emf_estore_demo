@@ -59,6 +59,7 @@ public class Estore_demoFactoryImpl extends EFactoryImpl implements Estore_demoF
 			case Estore_demoPackage.PERSON: return createPerson();
 			case Estore_demoPackage.ORGANIZATION: return createOrganization();
 			case Estore_demoPackage.DEMO_ROOT: return createDemoRoot();
+			case Estore_demoPackage.TASK: return createTask();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -92,6 +93,16 @@ public class Estore_demoFactoryImpl extends EFactoryImpl implements Estore_demoF
 	public DemoRoot createDemoRoot() {
 		DemoRootImpl demoRoot = new DemoRootImpl();
 		return demoRoot;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Task createTask() {
+		TaskImpl task = new TaskImpl();
+		return task;
 	}
 
 	/**

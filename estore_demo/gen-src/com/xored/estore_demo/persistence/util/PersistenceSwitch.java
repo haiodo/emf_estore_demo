@@ -1,13 +1,13 @@
 /**
  */
-package com.xored.estore_demo.util;
+package com.xored.estore_demo.persistence.util;
 
-import com.xored.estore_demo.*;
+import com.xored.estore_demo.persistence.*;
 
-import java.util.List;
-
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+
+import org.eclipse.emf.ecore.util.Switch;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,17 +19,17 @@ import org.eclipse.emf.ecore.EObject;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see com.xored.estore_demo.Estore_demoPackage
+ * @see com.xored.estore_demo.persistence.PersistencePackage
  * @generated
  */
-public class Estore_demoSwitch<T> {
+public class PersistenceSwitch<T> extends Switch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static Estore_demoPackage modelPackage;
+	protected static PersistencePackage modelPackage;
 
 	/**
 	 * Creates an instance of the switch.
@@ -37,10 +37,23 @@ public class Estore_demoSwitch<T> {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Estore_demoSwitch() {
+	public PersistenceSwitch() {
 		if (modelPackage == null) {
-			modelPackage = Estore_demoPackage.eINSTANCE;
+			modelPackage = PersistencePackage.eINSTANCE;
 		}
+	}
+
+	/**
+	 * Checks whether this is a switch for the given package.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @parameter ePackage the package in question.
+	 * @return whether this is a switch for the given package.
+	 * @generated
+	 */
+	@Override
+	protected boolean isSwitchFor(EPackage ePackage) {
+		return ePackage == modelPackage;
 	}
 
 	/**
@@ -50,60 +63,30 @@ public class Estore_demoSwitch<T> {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	public T doSwitch(EObject theEObject) {
-		return doSwitch(theEObject.eClass(), theEObject);
-	}
-
-	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the first non-null result returned by a <code>caseXXX</code> call.
-	 * @generated
-	 */
-	protected T doSwitch(EClass theEClass, EObject theEObject) {
-		if (theEClass.eContainer() == modelPackage) {
-			return doSwitch(theEClass.getClassifierID(), theEObject);
-		}
-		else {
-			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return
-				eSuperTypes.isEmpty() ?
-					defaultCase(theEObject) :
-					doSwitch(eSuperTypes.get(0), theEObject);
-		}
-	}
-
-	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the first non-null result returned by a <code>caseXXX</code> call.
-	 * @generated
-	 */
+	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case Estore_demoPackage.PERSON: {
-				Person person = (Person)theEObject;
-				T result = casePerson(person);
+			case PersistencePackage.PERSISTENCE_CHUNK: {
+				PersistenceChunk persistenceChunk = (PersistenceChunk)theEObject;
+				T result = casePersistenceChunk(persistenceChunk);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Estore_demoPackage.ORGANIZATION: {
-				Organization organization = (Organization)theEObject;
-				T result = caseOrganization(organization);
+			case PersistencePackage.ROOT_OBJECT: {
+				RootObject rootObject = (RootObject)theEObject;
+				T result = caseRootObject(rootObject);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Estore_demoPackage.DEMO_ROOT: {
-				DemoRoot demoRoot = (DemoRoot)theEObject;
-				T result = caseDemoRoot(demoRoot);
+			case PersistencePackage.PERSISTED_OBJECT: {
+				PersistedObject persistedObject = (PersistedObject)theEObject;
+				T result = casePersistedObject(persistedObject);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Estore_demoPackage.TASK: {
-				Task task = (Task)theEObject;
-				T result = caseTask(task);
+			case PersistencePackage.PERSISTED_ATTRIBUTE: {
+				PersistedAttribute persistedAttribute = (PersistedAttribute)theEObject;
+				T result = casePersistedAttribute(persistedAttribute);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -112,62 +95,62 @@ public class Estore_demoSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Person</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Chunk</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Person</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Chunk</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePerson(Person object) {
+	public T casePersistenceChunk(PersistenceChunk object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Organization</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Root Object</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Organization</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Root Object</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseOrganization(Organization object) {
+	public T caseRootObject(RootObject object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Demo Root</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Persisted Object</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Demo Root</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Persisted Object</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDemoRoot(DemoRoot object) {
+	public T casePersistedObject(PersistedObject object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Task</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Persisted Attribute</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Task</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Persisted Attribute</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTask(Task object) {
+	public T casePersistedAttribute(PersistedAttribute object) {
 		return null;
 	}
 
@@ -182,8 +165,9 @@ public class Estore_demoSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */
+	@Override
 	public T defaultCase(EObject object) {
 		return null;
 	}
 
-} //Estore_demoSwitch
+} //PersistenceSwitch

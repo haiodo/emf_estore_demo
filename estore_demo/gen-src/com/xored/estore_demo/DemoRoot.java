@@ -29,7 +29,7 @@ public interface DemoRoot extends EObject {
 	 * The list contents are of type {@link com.xored.estore_demo.Organization}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Organizations</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Organizations</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
@@ -45,7 +45,7 @@ public interface DemoRoot extends EObject {
 	 * The list contents are of type {@link com.xored.estore_demo.Person}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>People</em>' reference list isn't clear,
+	 * If the meaning of the '<em>People</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->

@@ -1,5 +1,9 @@
 package com.xored.estore_demo.views;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.action.Action;
@@ -24,18 +28,18 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.ISelectionListener;
-import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.DrillDownAdapter;
 import org.eclipse.ui.part.ViewPart;
 
-import com.xored.estore_demo.DemoFactory;
 import com.xored.estore_demo.DemoRoot;
+import com.xored.estore_demo.EStoreResourceImpl;
+import com.xored.estore_demo.Estore_demoPackage;
 import com.xored.estore_demo.Organization;
 import com.xored.estore_demo.Person;
-import com.xored.estore_demo.ResourceBasedEStoreModel;
+import com.xored.estore_demo.Task;
 
 public class EStoreDemoViewer extends ViewPart {
 
@@ -46,8 +50,6 @@ public class EStoreDemoViewer extends ViewPart {
 
 	private TreeViewer viewer;
 	private DrillDownAdapter drillDownAdapter;
-	private Action action1;
-	private Action action2;
 	private Action doubleClickAction;
 
 	class ViewContentProvider implements IStructuredContentProvider,
@@ -75,8 +77,14 @@ public class EStoreDemoViewer extends ViewPart {
 			if (parent instanceof DemoRoot) {
 				return ((DemoRoot) parent).getOrganizations().toArray();
 			}
+			if (parent instanceof Task) {
+				return ((Task) parent).getTasks().toArray();
+			}
 			if (parent instanceof Person) {
-				return ((Person) parent).getLikedToWork().toArray();
+				List<Object> items = new ArrayList<Object>();
+				items.addAll(((Person) parent).getLikedToWork());
+				items.addAll(((Person) parent).getTasks());
+				return items.toArray();
 			}
 			return new Object[0];
 		}
@@ -96,8 +104,7 @@ public class EStoreDemoViewer extends ViewPart {
 	 * This is a callback that will allow us to create the viewer and initialize
 	 * it.
 	 */
-	private ResourceBasedEStoreModel model = null;
-	private DemoFactory factory = null;
+	EStoreResourceImpl resource = null;
 	private IFile currentFile = null;
 
 	public void createPartControl(Composite parent) {
@@ -117,6 +124,8 @@ public class EStoreDemoViewer extends ViewPart {
 					return ((Organization) element).getName();
 				} else if (element instanceof Person) {
 					return ((Person) element).getFirstName();
+				} else if (element instanceof Task) {
+					return ((Task) element).getName();
 				}
 				return "";
 			}
@@ -158,6 +167,8 @@ public class EStoreDemoViewer extends ViewPart {
 			public String getText(Object element) {
 				if (element instanceof Person) {
 					return ((Person) element).getSomeReallyBigData();
+				} else if (element instanceof Task) {
+					return ((Task) element).getDescription();
 				}
 				return "";
 			}
@@ -176,9 +187,9 @@ public class EStoreDemoViewer extends ViewPart {
 							ISelection selection) {
 						if (viewer.getControl().isDisposed()) {
 							PlatformUI.getWorkbench()
-							.getActiveWorkbenchWindow()
-							.getSelectionService()
-							.removeSelectionListener(this);
+									.getActiveWorkbenchWindow()
+									.getSelectionService()
+									.removeSelectionListener(this);
 						}
 						if (selection instanceof IStructuredSelection) {
 							final Object firstElement = ((IStructuredSelection) selection)
@@ -195,10 +206,18 @@ public class EStoreDemoViewer extends ViewPart {
 										.asyncExec(new Runnable() {
 											@Override
 											public void run() {
-												model = new ResourceBasedEStoreModel(
+												resource = new EStoreResourceImpl(
 														(IFile) firstElement);
-												factory = new DemoFactory(model);
-												viewer.setInput(model.getRoot());
+												try {
+													resource.load(null);
+												} catch (IOException e) {
+													e.printStackTrace();
+												}
+												viewer.setInput(resource
+														.getRoot(
+																0,
+																Estore_demoPackage.eINSTANCE
+																		.getDemoRoot()));
 											}
 										});
 							}
@@ -227,14 +246,9 @@ public class EStoreDemoViewer extends ViewPart {
 	}
 
 	private void fillLocalPullDown(IMenuManager manager) {
-		manager.add(action1);
-		manager.add(new Separator());
-		manager.add(action2);
 	}
 
 	private void fillContextMenu(IMenuManager manager) {
-		manager.add(action1);
-		manager.add(action2);
 		manager.add(new Separator());
 		drillDownAdapter.addNavigationActions(manager);
 		// Other plug-ins can contribute there actions here
@@ -242,32 +256,11 @@ public class EStoreDemoViewer extends ViewPart {
 	}
 
 	private void fillLocalToolBar(IToolBarManager manager) {
-		manager.add(action1);
-		manager.add(action2);
 		manager.add(new Separator());
 		drillDownAdapter.addNavigationActions(manager);
 	}
 
 	private void makeActions() {
-		action1 = new Action() {
-			public void run() {
-				showMessage("Action 1 executed");
-			}
-		};
-		action1.setText("Action 1");
-		action1.setToolTipText("Action 1 tooltip");
-		action1.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages()
-				.getImageDescriptor(ISharedImages.IMG_OBJS_INFO_TSK));
-
-		action2 = new Action() {
-			public void run() {
-				showMessage("Action 2 executed");
-			}
-		};
-		action2.setText("Action 2");
-		action2.setToolTipText("Action 2 tooltip");
-		action2.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages()
-				.getImageDescriptor(ISharedImages.IMG_OBJS_INFO_TSK));
 		doubleClickAction = new Action() {
 			public void run() {
 				ISelection selection = viewer.getSelection();

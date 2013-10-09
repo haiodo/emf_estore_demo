@@ -5,11 +5,11 @@ import org.eclipse.emf.ecore.EObject;
 
 import com.xored.estore_demo.impl.Estore_demoFactoryImpl;
 
-public class DemoFactory extends Estore_demoFactoryImpl {
-	private ResourceBasedEStoreModel model;
+public class EStoreFactory extends Estore_demoFactoryImpl {
+	private EStore model;
 
-	public DemoFactory(ResourceBasedEStoreModel model) {
-		this.model = model;
+	public EStoreFactory(EStoreResourceImpl resource) {
+		this.model = resource.getStore();
 	}
 
 	@Override
@@ -19,7 +19,7 @@ public class DemoFactory extends Estore_demoFactoryImpl {
 
 	@Override
 	public DemoRoot createDemoRoot() {
-		return this.model.getRoot();
+		return (DemoRoot) create(Estore_demoPackage.eINSTANCE.getDemoRoot());
 	}
 
 	@Override
@@ -33,4 +33,8 @@ public class DemoFactory extends Estore_demoFactoryImpl {
 		return (Person) create(Estore_demoPackage.eINSTANCE.getPerson());
 	}
 
+	@Override
+	public Task createTask() {
+		return (Task) create(Estore_demoPackage.eINSTANCE.getTask());
+	}
 }

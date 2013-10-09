@@ -1,8 +1,8 @@
 /**
  */
-package com.xored.estore_demo.util;
+package com.xored.estore_demo.persistence.util;
 
-import com.xored.estore_demo.*;
+import com.xored.estore_demo.persistence.*;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -16,17 +16,17 @@ import org.eclipse.emf.ecore.EObject;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see com.xored.estore_demo.Estore_demoPackage
+ * @see com.xored.estore_demo.persistence.PersistencePackage
  * @generated
  */
-public class Estore_demoAdapterFactory extends AdapterFactoryImpl {
+public class PersistenceAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static Estore_demoPackage modelPackage;
+	protected static PersistencePackage modelPackage;
 
 	/**
 	 * Creates an instance of the adapter factory.
@@ -34,9 +34,9 @@ public class Estore_demoAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Estore_demoAdapterFactory() {
+	public PersistenceAdapterFactory() {
 		if (modelPackage == null) {
-			modelPackage = Estore_demoPackage.eINSTANCE;
+			modelPackage = PersistencePackage.eINSTANCE;
 		}
 	}
 
@@ -65,23 +65,23 @@ public class Estore_demoAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Estore_demoSwitch<Adapter> modelSwitch =
-		new Estore_demoSwitch<Adapter>() {
+	protected PersistenceSwitch<Adapter> modelSwitch =
+		new PersistenceSwitch<Adapter>() {
 			@Override
-			public Adapter casePerson(Person object) {
-				return createPersonAdapter();
+			public Adapter casePersistenceChunk(PersistenceChunk object) {
+				return createPersistenceChunkAdapter();
 			}
 			@Override
-			public Adapter caseOrganization(Organization object) {
-				return createOrganizationAdapter();
+			public Adapter caseRootObject(RootObject object) {
+				return createRootObjectAdapter();
 			}
 			@Override
-			public Adapter caseDemoRoot(DemoRoot object) {
-				return createDemoRootAdapter();
+			public Adapter casePersistedObject(PersistedObject object) {
+				return createPersistedObjectAdapter();
 			}
 			@Override
-			public Adapter caseTask(Task object) {
-				return createTaskAdapter();
+			public Adapter casePersistedAttribute(PersistedAttribute object) {
+				return createPersistedAttributeAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -104,58 +104,58 @@ public class Estore_demoAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link com.xored.estore_demo.Person <em>Person</em>}'.
+	 * Creates a new adapter for an object of class '{@link com.xored.estore_demo.persistence.PersistenceChunk <em>Chunk</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see com.xored.estore_demo.Person
+	 * @see com.xored.estore_demo.persistence.PersistenceChunk
 	 * @generated
 	 */
-	public Adapter createPersonAdapter() {
+	public Adapter createPersistenceChunkAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link com.xored.estore_demo.Organization <em>Organization</em>}'.
+	 * Creates a new adapter for an object of class '{@link com.xored.estore_demo.persistence.RootObject <em>Root Object</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see com.xored.estore_demo.Organization
+	 * @see com.xored.estore_demo.persistence.RootObject
 	 * @generated
 	 */
-	public Adapter createOrganizationAdapter() {
+	public Adapter createRootObjectAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link com.xored.estore_demo.DemoRoot <em>Demo Root</em>}'.
+	 * Creates a new adapter for an object of class '{@link com.xored.estore_demo.persistence.PersistedObject <em>Persisted Object</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see com.xored.estore_demo.DemoRoot
+	 * @see com.xored.estore_demo.persistence.PersistedObject
 	 * @generated
 	 */
-	public Adapter createDemoRootAdapter() {
+	public Adapter createPersistedObjectAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link com.xored.estore_demo.Task <em>Task</em>}'.
+	 * Creates a new adapter for an object of class '{@link com.xored.estore_demo.persistence.PersistedAttribute <em>Persisted Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see com.xored.estore_demo.Task
+	 * @see com.xored.estore_demo.persistence.PersistedAttribute
 	 * @generated
 	 */
-	public Adapter createTaskAdapter() {
+	public Adapter createPersistedAttributeAdapter() {
 		return null;
 	}
 
@@ -171,4 +171,4 @@ public class Estore_demoAdapterFactory extends AdapterFactoryImpl {
 		return null;
 	}
 
-} //Estore_demoAdapterFactory
+} //PersistenceAdapterFactory

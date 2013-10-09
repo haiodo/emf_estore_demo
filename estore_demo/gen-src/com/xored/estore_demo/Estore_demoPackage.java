@@ -103,13 +103,22 @@ public interface Estore_demoPackage extends EPackage {
 	int PERSON__SOME_REALLY_BIG_DATA = 3;
 
 	/**
+	 * The feature id for the '<em><b>Tasks</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERSON__TASKS = 4;
+
+	/**
 	 * The number of structural features of the '<em>Person</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PERSON_FEATURE_COUNT = 4;
+	int PERSON_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Person</em>' class.
@@ -175,7 +184,6 @@ public interface Estore_demoPackage extends EPackage {
 	 */
 	int ORGANIZATION_OPERATION_COUNT = 0;
 
-
 	/**
 	 * The meta object id for the '{@link com.xored.estore_demo.impl.DemoRootImpl <em>Demo Root</em>}' class.
 	 * <!-- begin-user-doc -->
@@ -221,6 +229,79 @@ public interface Estore_demoPackage extends EPackage {
 	 * @ordered
 	 */
 	int DEMO_ROOT_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link com.xored.estore_demo.impl.TaskImpl <em>Task</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.xored.estore_demo.impl.TaskImpl
+	 * @see com.xored.estore_demo.impl.Estore_demoPackageImpl#getTask()
+	 * @generated
+	 */
+	int TASK = 3;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK__DESCRIPTION = 1;
+
+	/**
+	 * The feature id for the '<em><b>Estimation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK__ESTIMATION = 2;
+
+	/**
+	 * The feature id for the '<em><b>Complete</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK__COMPLETE = 3;
+
+	/**
+	 * The feature id for the '<em><b>Tasks</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK__TASKS = 4;
+
+	/**
+	 * The number of structural features of the '<em>Task</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK_FEATURE_COUNT = 5;
+
+	/**
+	 * The number of operations of the '<em>Task</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK_OPERATION_COUNT = 0;
 
 
 	/**
@@ -276,6 +357,17 @@ public interface Estore_demoPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getPerson_SomeReallyBigData();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link com.xored.estore_demo.Person#getTasks <em>Tasks</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Tasks</em>'.
+	 * @see com.xored.estore_demo.Person#getTasks()
+	 * @see #getPerson()
+	 * @generated
+	 */
+	EReference getPerson_Tasks();
 
 	/**
 	 * Returns the meta object for class '{@link com.xored.estore_demo.Organization <em>Organization</em>}'.
@@ -353,6 +445,71 @@ public interface Estore_demoPackage extends EPackage {
 	EReference getDemoRoot_People();
 
 	/**
+	 * Returns the meta object for class '{@link com.xored.estore_demo.Task <em>Task</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Task</em>'.
+	 * @see com.xored.estore_demo.Task
+	 * @generated
+	 */
+	EClass getTask();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.xored.estore_demo.Task#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see com.xored.estore_demo.Task#getName()
+	 * @see #getTask()
+	 * @generated
+	 */
+	EAttribute getTask_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.xored.estore_demo.Task#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Description</em>'.
+	 * @see com.xored.estore_demo.Task#getDescription()
+	 * @see #getTask()
+	 * @generated
+	 */
+	EAttribute getTask_Description();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.xored.estore_demo.Task#getEstimation <em>Estimation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Estimation</em>'.
+	 * @see com.xored.estore_demo.Task#getEstimation()
+	 * @see #getTask()
+	 * @generated
+	 */
+	EAttribute getTask_Estimation();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.xored.estore_demo.Task#getComplete <em>Complete</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Complete</em>'.
+	 * @see com.xored.estore_demo.Task#getComplete()
+	 * @see #getTask()
+	 * @generated
+	 */
+	EAttribute getTask_Complete();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link com.xored.estore_demo.Task#getTasks <em>Tasks</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Tasks</em>'.
+	 * @see com.xored.estore_demo.Task#getTasks()
+	 * @see #getTask()
+	 * @generated
+	 */
+	EReference getTask_Tasks();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -418,6 +575,14 @@ public interface Estore_demoPackage extends EPackage {
 		EAttribute PERSON__SOME_REALLY_BIG_DATA = eINSTANCE.getPerson_SomeReallyBigData();
 
 		/**
+		 * The meta object literal for the '<em><b>Tasks</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PERSON__TASKS = eINSTANCE.getPerson_Tasks();
+
+		/**
 		 * The meta object literal for the '{@link com.xored.estore_demo.impl.OrganizationImpl <em>Organization</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -476,6 +641,56 @@ public interface Estore_demoPackage extends EPackage {
 		 * @generated
 		 */
 		EReference DEMO_ROOT__PEOPLE = eINSTANCE.getDemoRoot_People();
+
+		/**
+		 * The meta object literal for the '{@link com.xored.estore_demo.impl.TaskImpl <em>Task</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see com.xored.estore_demo.impl.TaskImpl
+		 * @see com.xored.estore_demo.impl.Estore_demoPackageImpl#getTask()
+		 * @generated
+		 */
+		EClass TASK = eINSTANCE.getTask();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TASK__NAME = eINSTANCE.getTask_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TASK__DESCRIPTION = eINSTANCE.getTask_Description();
+
+		/**
+		 * The meta object literal for the '<em><b>Estimation</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TASK__ESTIMATION = eINSTANCE.getTask_Estimation();
+
+		/**
+		 * The meta object literal for the '<em><b>Complete</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TASK__COMPLETE = eINSTANCE.getTask_Complete();
+
+		/**
+		 * The meta object literal for the '<em><b>Tasks</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TASK__TASKS = eINSTANCE.getTask_Tasks();
 
 	}
 
